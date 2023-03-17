@@ -8,8 +8,8 @@ class ChatMessageResponse implements chatMessageResponse{
     message: string = '';
     contentLength: number = 0;
 
-    constructor(data: chatMessageResponse){
-        Object.assign(this, data)
+    constructor(data?: chatMessageResponse){
+        if(data) Object.assign(this, data)
     }
 
     fromOpenAPIResponse(data: openAIAPIResponse){
