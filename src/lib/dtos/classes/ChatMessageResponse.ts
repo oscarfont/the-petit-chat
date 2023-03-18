@@ -1,4 +1,4 @@
-import { chatMessageResponse } from "../interfaces/chatMessageResonse";
+import { chatMessageResponse } from "../interfaces/chatMessageResponse";
 import { openAIAPIResponse } from "../interfaces/openAPIResponse";
 
 class ChatMessageResponse implements chatMessageResponse{
