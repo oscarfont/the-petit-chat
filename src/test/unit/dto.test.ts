@@ -7,13 +7,19 @@ describe("DTOs unit tests", () => {
     sampleOpenAIData = {
         "choices": [
             {
-                "delta": {
-                    "content": "2"
+                "message": {
+                    "content": "2",
+                    "role": "assistant"
                 },
                 "finish_reason": null,
                 "index": 0
             }
         ],
+        "usage": {
+            "completion_tokens": 2, 
+            "prompt_tokens": 3, 
+            "total_tokens": 139
+        },
         "created": 1677825464,
         "id": "chatcmpl-6ptKyqKOGXZT6iQnqiXAH8adNLUzD",
         "model": "gpt-3.5-turbo-0301",
@@ -22,31 +28,7 @@ describe("DTOs unit tests", () => {
   });
 
   test("should create ChatMessageResponse successfully given the openAPIResponse", () => {
-    // add content to sample openAPIResponse
-    const sampleContent = {content: "2"};
-    sampleOpenAIData.choices[0].delta = sampleContent;
-    const expectedChaMessage = new ChatMessageResponse({id: sampleOpenAIData.id, model: sampleOpenAIData.model, message: sampleContent.content, contentLength: sampleContent.content.length})
-
-    const actualMessage = new ChatMessageResponse();
-    actualMessage.fromOpenAPIResponse(sampleOpenAIData);
-
-    expect(actualMessage).toMatchObject(expectedChaMessage);
-  });
-
-  test("should create ChatMessageResponse successfully given the openAPIResponse missing content", () => {
-    // add empty object to sample openAPIResponse
-    sampleOpenAIData.choices[0].delta = {}
-    const expectedChaMessage = new ChatMessageResponse({id: sampleOpenAIData.id, model: sampleOpenAIData.model, message: '', contentLength: 0})
-
-    const actualMessage = new ChatMessageResponse();
-    actualMessage.fromOpenAPIResponse(sampleOpenAIData);
-
-    expect(actualMessage).toMatchObject(expectedChaMessage);
-  });
-
-  test("should create ChatMessageResponse successfully given the openAPIResponse empty content", () => {
-    sampleOpenAIData.choices[0].delta = { content: "" };
-    const expectedChaMessage = new ChatMessageResponse({id: sampleOpenAIData.id, model: sampleOpenAIData.model, message: '', contentLength: 0})
+    const expectedChaMessage = new ChatMessageResponse({id: sampleOpenAIData.id, model: sampleOpenAIData.model, message: sampleOpenAIData.choices[0].message.content, contentLength: sampleOpenAIData.choices[0].message.content.length})
 
     const actualMessage = new ChatMessageResponse();
     actualMessage.fromOpenAPIResponse(sampleOpenAIData);
