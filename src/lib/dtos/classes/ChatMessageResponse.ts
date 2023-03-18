@@ -12,11 +12,11 @@ class ChatMessageResponse implements chatMessageResponse{
         if(data) Object.assign(this, data)
     }
 
-    fromOpenAPIResponse(data: openAIAPIResponse){
-        this.id = data.id;
-        this.model = data.model;
-        this.message = data.choices[0].delta.content ? data.choices[0].delta.content : '';
-        this.contentLength = data.choices[0].delta.content?.length ? data.choices[0].delta.content?.length : 0;
+    fromOpenAPIResponse(response: openAIAPIResponse){
+        this.id = response.id;
+        this.model = response.model;
+        this.message = response.choices[0].message.content ? response.choices[0].message.content : '';
+        this.contentLength = response.choices[0].message.content?.length ? response.choices[0].message.content?.length : 0;
     }
 }
 

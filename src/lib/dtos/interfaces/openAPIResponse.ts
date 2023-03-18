@@ -4,15 +4,22 @@ export interface openAIAPIResponse {
     id:      string;
     model:   string;
     object:  string;
+    usage:   TokensUsage;
 }
 
 export interface Choice {
-    delta:         Delta;
+    message:       Delta;
     finish_reason: null | string;
     index:         number;
 }
 
 export interface Delta {
-    role?: string;
-    content?: string;
+    role: string;
+    content: string;
+}
+
+export interface TokensUsage {
+    prompt_tokens: number; 
+    completion_tokens: number; 
+    total_tokens: number;
 }
