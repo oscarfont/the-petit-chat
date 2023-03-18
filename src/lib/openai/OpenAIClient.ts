@@ -1,9 +1,12 @@
 import { httpClient } from "../adapters/http/httpClientInterface";
 import ChatMessageResponse from "../dtos/classes/ChatMessageResponse";
+import { openAIAPIResponse } from "../dtos/interfaces/openAPIResponse";
+import { MessageRole, messages } from "./KnowledgeBase";
 import { openAIClient } from "./openAIClientInterface";
 
 class OpenAIClient implements openAIClient{
 
+    public endpointURL = 'https://api.openai.com/v1/chat/completions';
     private readonly httpClient: httpClient;
     private readonly apiKey: string;
 
@@ -16,8 +19,24 @@ class OpenAIClient implements openAIClient{
         return this.apiKey !== undefined && this.apiKey.length > 0;
     }
 
-    generate(message: string): ChatMessageResponse[] {
-        throw new Error("Method not implemented.");
+    async generate(message: string): Promise<ChatMessageResponse[]> {
+        try{
+            const body = {
+                model: 'gpt-3.5-turbo',
+                messages: [...messages, { role: MessageRole.USER, prompt: message }],
+                stream: true,
+                temperature: 0.5
+            }
+            const response = await this.httpClient.post<Array<openAIAPIResponse>>(this.endpointURL, body);
+            return response.map((chunk) => {
+                const message = new ChatMessageResponse();
+                message.fromOpenAPIResponse(chunk);
+                return message;
+            });
+        }catch(e: any){
+            console.log(e?.message);
+            return [];
+        }
     }
 }
 

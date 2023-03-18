@@ -8,4 +8,8 @@ describe("OpenAIClient tests", () => {
     test('Check API_KEY is added successfully from .env variables', () => {
         expect(openAiClient.apiKeyIsNotEmpty()).toBeTruthy();
     });
+
+    test('Sending a completion POST request to OpenAI returns a 200 code', () => {
+        // TODO: to complete with sueprtest
+    });
 });
