@@ -9,6 +9,7 @@ yarn-error.log*
 /out/
 
 # Environment variables
+.env
 .env.local
 .env.development.local
 .env.test.local
@@ -24,6 +25,3 @@ Thumbs.db
 
 # Jest
 coverage/
-
-# env files
-.env
