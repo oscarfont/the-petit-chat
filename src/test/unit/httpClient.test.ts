@@ -1,7 +1,7 @@
 import { AxiosInstance, AxiosRequestConfig } from 'axios';
-import HttpClient from '../../lib/adapters/http/HttpClient';
+import HttpClient from '@/lib/adapters/http/HttpClient';
 
-describe('AxiosHttpClient', () => {
+describe('HttpClient adapter class', () => {
   let axiosInstance: AxiosInstance;
   let httpClient: HttpClient;
 
@@ -13,15 +13,13 @@ describe('AxiosHttpClient', () => {
     httpClient = new HttpClient(axiosInstance);
   });
 
-  describe('HttpClient adapter class', () => {
-    it('should create axios adapter correctly without passing an axiosInstance', async () => {
-        const httpClient2 = new HttpClient();
-        expect(httpClient2).toBeTruthy();
-    });
+  test('should create axios adapter correctly without passing an axiosInstance', async () => {
+    const httpClient2 = new HttpClient();
+    expect(httpClient2).toBeTruthy();
   });
 
-  describe('post', () => {
-    it('should call axiosInstance.post with the provided URL, data, and config', async () => {
+  describe('post requests tests', () => {
+    test('should call axiosInstance.post with the provided URL, data, and config', async () => {
         const url = 'https://example.com';
         const data = { foo: 'bar' };
         const config: AxiosRequestConfig = { headers: { 'Content-Type': 'application/json' } };
@@ -32,7 +30,7 @@ describe('AxiosHttpClient', () => {
         expect(axiosInstance.post).toHaveBeenCalledWith(url, data, config);
     });
   
-    it('should return the response data', async () => {
+    test('should return the response data', async () => {
         const responseData = { message: 'Hello, world!' };
         const url = 'https://example.com';
         const data = { foo: 'bar' };

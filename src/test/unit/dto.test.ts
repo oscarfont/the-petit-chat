@@ -1,5 +1,5 @@
 import { openAIAPIResponse } from "@/lib/dtos/interfaces/openAPIResponse";
-import ChatMessageResponse from "../../lib/dtos/classes/ChatMessageResponse";
+import ChatMessageResponse from "@/lib/dtos/classes/ChatMessageResponse";
 
 describe("DTOs unit tests", () => {
   let sampleOpenAIData : openAIAPIResponse;
