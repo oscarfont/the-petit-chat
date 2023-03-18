@@ -46,3 +46,7 @@ a {
   background-color: var(--cake-red);
   border-radius: 0 0 2rem 2rem;
 }
+
+.bg-color {
+  background-color: var(--old-white);
+}
