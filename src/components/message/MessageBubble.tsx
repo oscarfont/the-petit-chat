@@ -7,7 +7,7 @@ export default function MessageBubble({
   content,
   role,
 }: {
-  id: number;
+  id: string;
   content: string;
   role: MESSAGE_ROLE;
 }) {
