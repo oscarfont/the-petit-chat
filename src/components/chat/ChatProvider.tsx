@@ -4,7 +4,9 @@ import { Message } from "./Message";
 
 interface ChatContextType {
   messages: Message[];
+  isLoading: boolean;
   addMessage: (message: Message) => void;
+  setLoading: (loading: boolean) => void;
 }
 
 interface ChatProviderProps {
@@ -26,7 +28,9 @@ const initialAssistantMessage: Message = {
 
 export const ChatContext = createContext<ChatContextType>({
   messages: [],
+  isLoading: false,
   addMessage: () => {},
+  setLoading: () => {},
 });
 
 export const ChatProvider: FC<ChatProviderProps> = ({ children }) => {
@@ -34,12 +38,20 @@ export const ChatProvider: FC<ChatProviderProps> = ({ children }) => {
     initialAssistantMessage,
   ]);
 
+  const [isLoading, setIsLoading] = useState<boolean>(false);
+
+  const setLoading = (loading: boolean) => {
+    setIsLoading(loading);
+  };
+
   const addMessage = (newMessage: Message) => {
     setMessages((prevMessages) => [...prevMessages, newMessage]);
   };
 
   return (
-    <ChatContext.Provider value={{ messages, addMessage }}>
+    <ChatContext.Provider
+      value={{ messages, addMessage, isLoading, setLoading }}
+    >
       {children}
     </ChatContext.Provider>
   );

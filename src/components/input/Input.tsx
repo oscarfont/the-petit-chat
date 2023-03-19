@@ -1,6 +1,6 @@
 import { useContext, useState } from "react";
 import { ChatContext, currentTime } from "../chat/ChatProvider";
-import { SendIcon } from "../Icons";
+import { LoadingDot, SendIcon, ThreeDots } from "../Icons";
 import { v4 as uuidv4 } from "uuid";
 import { Message } from "../chat/Message";
 import { MESSAGE_ROLE } from "../message/MessageRole";
@@ -8,7 +8,7 @@ import { MESSAGE_ROLE } from "../message/MessageRole";
 export default function Input() {
   const [userMessage, setUserMessage] = useState<string>("");
   const [canSend, setCanSend] = useState<boolean>(false);
-  const { addMessage } = useContext(ChatContext);
+  const { addMessage, isLoading, setLoading } = useContext(ChatContext);
 
   const fetchTextCompletion = async (userMessage: string) => {
     try {
@@ -27,6 +27,7 @@ export default function Input() {
         time: currentTime(),
       };
       addMessage(chatMessage);
+      setLoading(false);
     } catch (error) {
       console.error(error);
     }
@@ -34,6 +35,7 @@ export default function Input() {
 
   const sumbitMessage = async (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
+    setLoading(true);
     const chatUserMessage: Message = {
       id: uuidv4(),
       content: userMessage,
@@ -65,10 +67,10 @@ export default function Input() {
         <button
           id="send-button"
           type="submit"
-          className="bg-dark-grey absolute top-2 right-2 rounded-full p-1.5"
-          disabled={!canSend}
+          className="bg-dark-grey absolute top-2 right-2 inline-block rounded-full p-1.5"
+          disabled={!canSend && !isLoading}
         >
-          <SendIcon />
+          {isLoading ? <ThreeDots /> : <SendIcon />}
         </button>
       </div>
     </form>

@@ -1,4 +1,5 @@
 import { Arimo } from "next/font/google";
+import { LoadingDot } from "../Icons";
 import { MESSAGE_ROLE } from "./MessageRole";
 const arimo = Arimo({ subsets: ["latin"] });
 
@@ -32,7 +33,7 @@ export default function MessageBubble({
       ) : (
         <></>
       )}
-      <div className={bubbleStyle}> {content} </div>
+      <div className={bubbleStyle}>{content}</div>
     </div>
   );
 }
