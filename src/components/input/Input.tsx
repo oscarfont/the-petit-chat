@@ -41,6 +41,7 @@ export default function Input() {
     };
     addMessage(chatUserMessage);
     fetchTextCompletion(userMessage);
+    setUserMessage("");
   };
 
   const handleMessageChange = (event: React.ChangeEvent<HTMLInputElement>) => {
