@@ -1,3 +1,6 @@
+import { Arimo } from 'next/font/google'
+const arimo = Arimo({subsets:['latin']});
+
 export default function MessageBubble({id, content} : {id: number, content: string}) {
     return (
         <div className="flex justify-start mb-4" key={id}>
@@ -9,7 +12,7 @@ export default function MessageBubble({id, content} : {id: number, content: stri
                 />
             </span>
             <div
-              className="ml-2 py-3 px-4 bg-gray-400 rounded-br-3xl rounded-tr-3xl rounded-tl-xl text-white"
+              className={"ml-2 py-3 px-4 bg-dark-grey rounded-br-3xl rounded-tr-3xl rounded-tl-xl text-white " + arimo.className}
             >
               { content }
             </div>
