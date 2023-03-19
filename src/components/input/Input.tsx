@@ -40,6 +40,7 @@ export default function Input() {
       time: currentTime(),
     };
     addMessage(chatUserMessage);
+    fetchTextCompletion(userMessage);
   };
 
   const handleMessageChange = (event: React.ChangeEvent<HTMLInputElement>) => {
