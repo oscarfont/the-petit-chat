@@ -15,7 +15,7 @@ export const ChatContext = createContext<ChatContextType>({
 });
 
 export const ChatProvider: FC<ChatProviderProps> = ({ children }) => {
-  const [messages, setMessages] = useState<string[]>(['¡Hola Petit Traveller! Soy el asistente de los hoteles Petit Palace. ¡Pregúntame lo que quieras! Estoy aquí apra ayudarte.']);
+  const [messages, setMessages] = useState<string[]>(['¡Hola Petit Traveller! Soy el asistente de los hoteles Petit Palace. ¡Pregúntame lo que quieras! Estoy aquí para ayudarte.']);
 
   const addMessage = (newMessage: string) => {
     setMessages((prevMessages) => [...prevMessages, newMessage]);
