@@ -15,8 +15,12 @@ export default function MessageBubble({
     role === MESSAGE_ROLE.ASSISTANT
       ? `ml-2 py-3 px-4 bg-dark-grey rounded-br-3xl rounded-tr-3xl rounded-tl-xl text-white ${arimo.className}`
       : `ml-2 py-3 px-4 bg-light-grey rounded-bl-3xl rounded-tl-xl rounded-tr-3xl text-black ${arimo.className}`;
+  const bubbleContainerStyle =
+    role === MESSAGE_ROLE.ASSISTANT
+      ? "mb-4 flex justify-start"
+      : "mb-4 flex justify-end";
   return (
-    <div className="mb-4 flex justify-start" key={id}>
+    <div className={bubbleContainerStyle} key={id}>
       {role === MESSAGE_ROLE.ASSISTANT ? (
         <span className="felx-col flex min-w-fit items-end">
           <img

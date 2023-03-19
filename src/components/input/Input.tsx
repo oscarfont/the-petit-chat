@@ -1,14 +1,15 @@
 import { useContext, useState } from "react";
-import { ChatContext } from "../chat/ChatProvider";
+import { ChatContext, currentTime } from "../chat/ChatProvider";
 import { SendIcon } from "../Icons";
+import { v4 as uuidv4 } from "uuid";
+import { Message } from "../chat/Message";
+import { MESSAGE_ROLE } from "../message/MessageRole";
 
 export default function Input() {
   const [userMessage, setUserMessage] = useState<string>("");
-  const { messages, addMessage } = useContext(ChatContext);
+  const { addMessage } = useContext(ChatContext);
 
-  const sumbitMessage = async (event: React.FormEvent<HTMLFormElement>) => {
-    event.preventDefault();
-    addMessage(userMessage);
+  const fetchTextCompletion = async (userMessage: string) => {
     try {
       const response = await fetch("/api/generate", {
         method: "POST",
@@ -17,11 +18,28 @@ export default function Input() {
         },
         body: JSON.stringify({ message: userMessage }),
       });
-      const { message } = await response.json();
-      addMessage(message);
+      const { id, message } = await response.json();
+      const chatMessage: Message = {
+        id: id,
+        content: message,
+        role: MESSAGE_ROLE.ASSISTANT,
+        time: currentTime(),
+      };
+      addMessage(chatMessage);
     } catch (error) {
       console.error(error);
     }
+  };
+
+  const sumbitMessage = async (event: React.FormEvent<HTMLFormElement>) => {
+    event.preventDefault();
+    const chatUserMessage: Message = {
+      id: uuidv4(),
+      content: userMessage,
+      role: MESSAGE_ROLE.USER,
+      time: currentTime(),
+    };
+    addMessage(chatUserMessage);
   };
 
   const handleMessageChange = (event: React.ChangeEvent<HTMLInputElement>) => {

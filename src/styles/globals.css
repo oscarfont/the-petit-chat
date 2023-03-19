@@ -58,3 +58,24 @@ a {
 .bg-light-grey {
   background-color: var(--light-gray);
 }
+
+@layer utilities {
+  .scrollbar::-webkit-scrollbar {
+    width: 10px;
+    height: 20px;
+  }
+
+  .scrollbar::-webkit-scrollbar-track {
+    border-radius: 100vh;
+    background: var(--old-white);
+  }
+
+  .scrollbar::-webkit-scrollbar-thumb {
+    background: var(--dark-gray);
+    border-radius: 100vh;
+  }
+
+  .scrollbar::-webkit-scrollbar-thumb:hover {
+    background: var(--light-gray);
+  }
+}

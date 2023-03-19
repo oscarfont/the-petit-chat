@@ -11,7 +11,7 @@ interface ChatProviderProps {
   children: React.ReactNode;
 }
 
-const currentTime = () => {
+export const currentTime = () => {
   const date = new Date();
   return `${date.getHours()}:${date.getMinutes}`;
 };

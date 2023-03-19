@@ -11,7 +11,7 @@ export default function Chat() {
   return (
     <section className="flex h-screen w-full max-w-lg flex-col border-2 border-solid border-red-800 px-2">
       <Header />
-      <div className="h-full w-full border-2 border-solid border-red-800 p-4">
+      <div className="scrollbar h-full w-full overflow-y-scroll border-2 border-solid border-red-800 p-4">
         {messages.map((message: Message) => (
           <MessageBubble
             id={message.id}
