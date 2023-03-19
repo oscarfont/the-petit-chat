@@ -6,9 +6,22 @@ export default function Input() {
     const [userMessage, setUserMessage] = useState<string>("");
     const { messages, addMessage } = useContext(ChatContext);
 
-    const sumbitMessage = (event: React.FormEvent<HTMLFormElement>) => {
+    const sumbitMessage = async (event: React.FormEvent<HTMLFormElement>) => {
         event.preventDefault();
         addMessage(userMessage);
+        try {
+            const response = await fetch("/api/generate", {
+              method: "POST",
+              headers: {
+                "Content-Type": "application/json",
+              },
+              body: JSON.stringify({ message: userMessage }),
+            });
+            const { message } = await response.json();
+            addMessage(message);
+        } catch (error) {
+            console.error(error);
+        }
     };
 
     const handleMessageChange = (
