@@ -54,7 +54,7 @@ export default function Input() {
 
   return (
     <form onSubmit={sumbitMessage}>
-      <div className="relative block">
+      <div className="relative mb-4 block">
         <input
           className="w-full rounded-2xl p-4"
           placeholder="Escribe aquí tu pregunta..."
@@ -63,6 +63,7 @@ export default function Input() {
           onChange={handleMessageChange}
         />
         <button
+          id="send-button"
           type="submit"
           className="bg-dark-grey absolute top-2 right-2 rounded-full p-1.5"
           disabled={!canSend}

@@ -3,9 +3,9 @@ export const SendIcon = () => (
     xmlns="http://www.w3.org/2000/svg"
     fill="white"
     version="1.1"
-    viewBox="0 0 102 102"
-    strokeWidth={1.5}
-    stroke="currentColor"
+    viewBox="0 -5 102 102"
+    strokeWidth={1}
+    stroke="white"
     className="h-8 w-8"
   >
     <path

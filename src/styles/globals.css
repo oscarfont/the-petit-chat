@@ -79,3 +79,7 @@ a {
     background: var(--light-gray);
   }
 }
+
+#send-button:hover {
+  background-color: var(--light-gray);
+}
