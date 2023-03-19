@@ -23,7 +23,7 @@ export default function MessageBubble({
   return (
     <div className={bubbleContainerStyle} key={id}>
       {role === MESSAGE_ROLE.ASSISTANT ? (
-        <span className="felx-col flex min-w-fit items-end">
+        <span className="flex min-w-fit items-end">
           <img
             src="/the-petit-chat-avatar.webp"
             className="h-10 w-10 rounded-full object-cover"

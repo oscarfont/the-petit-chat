@@ -79,3 +79,35 @@ a {
     background-color: var(--light-gray);
   }
 }
+
+@keyframes jump {
+  0% {
+    bottom: 0px;
+  }
+  20% {
+    bottom: 5px;
+  }
+  40% {
+    bottom: 0px;
+  }
+}
+
+.dot {
+  position: relative;
+  animation: jump 1s infinite;
+}
+
+.animation-delay-1 {
+  -webkit-animation-delay: 100ms;
+  animation-delay: 100ms;
+}
+
+.animation-delay-2 {
+  -webkit-animation-delay: 200ms;
+  animation-delay: 200ms;
+}
+
+.animation-delay-3 {
+  -webkit-animation-delay: 300ms;
+  animation-delay: 300ms;
+}
