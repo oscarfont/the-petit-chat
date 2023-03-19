@@ -78,6 +78,10 @@ a {
   .bg-light-grey {
     background-color: var(--light-gray);
   }
+
+  .border-focus {
+    border: 1px solid var(--dark-gray);
+  }
 }
 
 @keyframes jump {

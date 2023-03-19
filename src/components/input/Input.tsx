@@ -59,11 +59,12 @@ export default function Input() {
     <form onSubmit={sumbitMessage}>
       <div className="relative mb-4 block">
         <input
-          className="w-full rounded-2xl p-4"
+          className="focus:border-focus w-full rounded-2xl p-4 focus:outline-none"
           placeholder="Escribe aquí tu pregunta..."
           type="text"
           value={userMessage}
           onChange={handleMessageChange}
+          maxLength={50}
         />
         <button
           id="send-button"

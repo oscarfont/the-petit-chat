@@ -18,10 +18,10 @@ export default function Chat() {
   }, [messages]);
 
   return (
-    <section className="flex h-screen w-full max-w-lg flex-col border-2 border-solid border-red-800 px-2">
+    <section className="flex h-screen w-full max-w-lg flex-col border-l-4 border-r-4 border-solid border-black px-2">
       <Header />
       <div
-        className="scrollbar h-full w-full overflow-y-scroll border-2 border-solid border-red-800 p-4"
+        className="scrollbar h-full w-full overflow-y-scroll p-4"
         ref={messageContainerRef}
       >
         {isLoading
