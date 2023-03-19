@@ -50,3 +50,7 @@ a {
 .bg-color {
   background-color: var(--old-white);
 }
+
+.bg-dark-grey {
+  background-color: var(--dark-gray);
+}
