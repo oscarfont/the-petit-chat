@@ -1,4 +1,4 @@
-import { useContext, useEffect } from "react";
+import { useContext, useEffect, useRef } from "react";
 import Header from "../header/Header";
 import Input from "../input/Input";
 import IsTyping from "../message/IsTyping";
@@ -8,11 +8,22 @@ import { Message } from "./Message";
 
 export default function Chat() {
   const { messages, isLoading } = useContext(ChatContext);
+  const messageContainerRef = useRef(null);
+
+  useEffect(() => {
+    if (messageContainerRef.current !== null) {
+      messageContainerRef.current.scrollTop =
+        messageContainerRef.current.scrollHeight;
+    }
+  }, [messages]);
 
   return (
     <section className="flex h-screen w-full max-w-lg flex-col border-2 border-solid border-red-800 px-2">
       <Header />
-      <div className="scrollbar h-full w-full overflow-y-scroll border-2 border-solid border-red-800 p-4">
+      <div
+        className="scrollbar h-full w-full overflow-y-scroll border-2 border-solid border-red-800 p-4"
+        ref={messageContainerRef}
+      >
         {isLoading
           ? [
               messages.map((message: Message) => (

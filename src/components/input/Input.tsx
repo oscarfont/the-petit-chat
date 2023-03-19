@@ -1,6 +1,6 @@
 import { useContext, useState } from "react";
 import { ChatContext, currentTime } from "../chat/ChatProvider";
-import { LoadingDot, SendIcon, ThreeDots } from "../Icons";
+import { SendIcon, ThreeDots } from "../Icons";
 import { v4 as uuidv4 } from "uuid";
 import { Message } from "../chat/Message";
 import { MESSAGE_ROLE } from "../message/MessageRole";
@@ -43,7 +43,7 @@ export default function Input() {
       time: currentTime(),
     };
     addMessage(chatUserMessage);
-    //fetchTextCompletion(userMessage);
+    fetchTextCompletion(userMessage);
     setUserMessage("");
     setCanSend(false);
   };
