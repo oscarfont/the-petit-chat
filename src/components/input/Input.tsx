@@ -7,6 +7,7 @@ import { MESSAGE_ROLE } from "../message/MessageRole";
 
 export default function Input() {
   const [userMessage, setUserMessage] = useState<string>("");
+  const [canSend, setCanSend] = useState<boolean>(false);
   const { addMessage } = useContext(ChatContext);
 
   const fetchTextCompletion = async (userMessage: string) => {
@@ -47,6 +48,8 @@ export default function Input() {
   const handleMessageChange = (event: React.ChangeEvent<HTMLInputElement>) => {
     const userMessage = event.target.value;
     setUserMessage(userMessage);
+    const isEmpty = userMessage.length > 0;
+    setCanSend(isEmpty);
   };
 
   return (
@@ -54,7 +57,7 @@ export default function Input() {
       <div className="relative block">
         <input
           className="w-full rounded-2xl p-4"
-          placeholder="Escribe aquí tu mensaje..."
+          placeholder="Escribe aquí tu pregunta..."
           type="text"
           value={userMessage}
           onChange={handleMessageChange}
@@ -62,6 +65,7 @@ export default function Input() {
         <button
           type="submit"
           className="bg-dark-grey absolute top-2 right-2 rounded-full p-1.5"
+          disabled={!canSend}
         >
           <SendIcon />
         </button>
