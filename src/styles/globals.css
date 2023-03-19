@@ -55,10 +55,6 @@ a {
   background-color: var(--dark-gray);
 }
 
-.bg-light-grey {
-  background-color: var(--light-gray);
-}
-
 @layer utilities {
   .scrollbar::-webkit-scrollbar {
     width: 10px;
@@ -78,8 +74,8 @@ a {
   .scrollbar::-webkit-scrollbar-thumb:hover {
     background: var(--light-gray);
   }
-}
 
-#send-button:hover {
-  background-color: var(--light-gray);
+  .bg-light-grey {
+    background-color: var(--light-gray);
+  }
 }

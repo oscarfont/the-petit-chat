@@ -43,8 +43,9 @@ export default function Input() {
       time: currentTime(),
     };
     addMessage(chatUserMessage);
-    fetchTextCompletion(userMessage);
+    //fetchTextCompletion(userMessage);
     setUserMessage("");
+    setCanSend(false);
   };
 
   const handleMessageChange = (event: React.ChangeEvent<HTMLInputElement>) => {
@@ -67,8 +68,10 @@ export default function Input() {
         <button
           id="send-button"
           type="submit"
-          className="bg-dark-grey absolute top-2 right-2 inline-block rounded-full p-1.5"
-          disabled={!canSend && !isLoading}
+          className={`bg-dark-grey absolute top-2 right-2 inline-block rounded-full p-1.5 ${
+            isLoading ? "" : "hover:bg-light-grey"
+          }`}
+          disabled={!canSend || isLoading}
         >
           {isLoading ? <ThreeDots /> : <SendIcon />}
         </button>
