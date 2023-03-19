@@ -31,6 +31,7 @@ export default function Chat() {
                   id={message.id}
                   content={message.content}
                   role={message.role}
+                  time={message.time}
                 />
               )),
               <IsTyping />,

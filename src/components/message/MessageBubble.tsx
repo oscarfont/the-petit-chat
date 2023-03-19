@@ -6,10 +6,12 @@ export default function MessageBubble({
   id,
   content,
   role,
+  time,
 }: {
   id: string;
   content: string;
   role: MESSAGE_ROLE;
+  time: string;
 }) {
   const bubbleStyle =
     role === MESSAGE_ROLE.ASSISTANT
@@ -32,7 +34,10 @@ export default function MessageBubble({
       ) : (
         <></>
       )}
-      <div className={bubbleStyle}>{content}</div>
+      <div className={bubbleStyle}>
+        {content}
+        <span>{time}</span>
+      </div>
     </div>
   );
 }

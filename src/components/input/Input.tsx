@@ -1,5 +1,5 @@
 import { useContext, useState } from "react";
-import { ChatContext, currentTime } from "../chat/ChatProvider";
+import { ChatContext } from "../chat/ChatProvider";
 import { SendIcon, ThreeDots } from "../Icons";
 import { v4 as uuidv4 } from "uuid";
 import { Message } from "../chat/Message";
@@ -24,7 +24,6 @@ export default function Input() {
         id: id,
         content: message,
         role: MESSAGE_ROLE.ASSISTANT,
-        time: currentTime(),
       };
       addMessage(chatMessage);
       setLoading(false);
@@ -40,7 +39,6 @@ export default function Input() {
       id: uuidv4(),
       content: userMessage,
       role: MESSAGE_ROLE.USER,
-      time: currentTime(),
     };
     addMessage(chatUserMessage);
     fetchTextCompletion(userMessage);
