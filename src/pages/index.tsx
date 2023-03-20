@@ -7,7 +7,7 @@ export default function Home() {
   return (
     <>
       <Head>
-        <title>Create Next App</title>
+        <title>The Petit Chat</title>
         <meta
           name="description"
           content="AI Virtual Assitant chat web app for The Petit Palace Hotel clients"
