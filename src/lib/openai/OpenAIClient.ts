@@ -32,6 +32,7 @@ class OpenAIClient implements openAIClient {
           Authorization: `Bearer ${this.apiKey}`,
         },
       };
+      console.log(this.apiKey);
       const body = {
         model: "gpt-3.5-turbo",
         messages: [...messages, { role: MessageRole.USER, content: message }],
