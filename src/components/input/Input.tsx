@@ -4,6 +4,8 @@ import { SendIcon, ThreeDots } from "../Icons";
 import { v4 as uuidv4 } from "uuid";
 import { Message } from "../chat/Message";
 import { MESSAGE_ROLE } from "../message/MessageRole";
+import { Arimo } from "next/font/google";
+const arimo = Arimo({ subsets: ["latin"] });
 
 export default function Input() {
   const [userMessage, setUserMessage] = useState<string>("");
@@ -64,7 +66,7 @@ export default function Input() {
     <form onSubmit={sumbitMessage}>
       <div className="relative mb-4 block">
         <input
-          className="focus:border-focus w-full rounded-2xl bg-slate-50 p-4 focus:outline-none dark:bg-slate-50"
+          className={`focus:border-focus w-full rounded-2xl bg-slate-50 p-4 focus:outline-none dark:bg-slate-50 ${arimo.className} text-black`}
           placeholder="Escribe aquí tu pregunta..."
           type="text"
           value={userMessage}
