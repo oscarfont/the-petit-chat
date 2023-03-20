@@ -1,5 +1,4 @@
 import Head from "next/head";
-import styles from "@/styles/Home.module.css";
 import Chat from "@/components/chat/Chat";
 import { ChatProvider } from "@/components/chat/ChatProvider";
 
