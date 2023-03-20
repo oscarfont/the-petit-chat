@@ -29,6 +29,13 @@ export default function Input() {
       setLoading(false);
     } catch (error) {
       console.error(error);
+      const errorMessage = {
+        id: uuidv4(),
+        content:
+          "Ha ocurrido un error. Es posible que debido a la alta demanda de peticiones haya fallos puntuales como este. Recarga la página e intenta preguntarme de nuevo.",
+        role: MESSAGE_ROLE.ASSISTANT,
+      };
+      addMessage(errorMessage);
     }
   };
 
@@ -57,7 +64,7 @@ export default function Input() {
     <form onSubmit={sumbitMessage}>
       <div className="relative mb-4 block">
         <input
-          className="focus:border-focus w-full rounded-2xl p-4 focus:outline-none"
+          className="focus:border-focus w-full rounded-2xl bg-slate-50 p-4 focus:outline-none dark:bg-slate-50"
           placeholder="Escribe aquí tu pregunta..."
           type="text"
           value={userMessage}
