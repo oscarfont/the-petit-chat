@@ -38,6 +38,7 @@ export default function Input() {
         role: MESSAGE_ROLE.ASSISTANT,
       };
       addMessage(errorMessage);
+      setLoading(false);
     }
   };
 
