@@ -1,4 +1,4 @@
-import { useContext, useEffect, useRef } from "react";
+import { RefObject, useContext, useEffect, useRef } from "react";
 import Header from "../header/Header";
 import Input from "../input/Input";
 import IsTyping from "../message/IsTyping";
@@ -8,10 +8,10 @@ import { Message } from "./Message";
 
 export default function Chat() {
   const { messages, isLoading } = useContext(ChatContext);
-  const messageContainerRef = useRef(null);
+  const messageContainerRef: RefObject<HTMLDivElement> = useRef(null);
 
   useEffect(() => {
-    if (messageContainerRef.current !== null) {
+    if (messageContainerRef.current) {
       messageContainerRef.current.scrollTop =
         messageContainerRef.current.scrollHeight;
     }
@@ -31,7 +31,6 @@ export default function Chat() {
                   id={message.id}
                   content={message.content}
                   role={message.role}
-                  time={message.time}
                 />
               )),
               <IsTyping />,
