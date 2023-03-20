@@ -18,7 +18,6 @@ class OpenAIClient implements openAIClient {
   apiKeyIsNotEmpty(): Boolean {
     return this.apiKey !== undefined && this.apiKey.length > 0;
   }
-
   parseResponse(response: openAIAPIResponse): ChatMessageResponse {
     const message = new ChatMessageResponse();
     message.fromOpenAPIResponse(response);
