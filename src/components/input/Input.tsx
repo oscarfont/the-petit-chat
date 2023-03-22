@@ -14,13 +14,19 @@ export default function Input() {
 
   const fetchTextCompletion = async (userMessage: string) => {
     try {
-      const response = await fetch("/api/generate", {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify({ message: userMessage }),
-      });
+      const response = await fetch(
+        "https://eqol9xfo7i.execute-api.eu-south-2.amazonaws.com/api/generate",
+        {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+            "X-API-KEY": process.env.NEXT_PUBLIC_AWS_KEY
+              ? process.env.NEXT_PUBLIC_AWS_KEY
+              : "",
+          },
+          body: JSON.stringify({ message: userMessage }),
+        }
+      );
       const { id, message } = await response.json();
       const chatMessage: Message = {
         id: id,
