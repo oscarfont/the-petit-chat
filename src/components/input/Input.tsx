@@ -15,7 +15,7 @@ export default function Input() {
   const fetchTextCompletion = async (userMessage: string) => {
     try {
       const response = await fetch(
-        "https://eqol9xfo7i.execute-api.eu-south-2.amazonaws.com/api/generate",
+          `${process.env.ENDPOINT_HOST}/api/generate`,
         {
           method: "POST",
           headers: {
@@ -57,7 +57,7 @@ export default function Input() {
       role: MESSAGE_ROLE.USER,
     };
     addMessage(chatUserMessage);
-    fetchTextCompletion(userMessage);
+    await fetchTextCompletion(userMessage);
     setUserMessage("");
     setCanSend(false);
   };
@@ -74,7 +74,7 @@ export default function Input() {
       <div className="relative mb-4 block">
         <input
           className={`focus:border-focus w-full rounded-2xl bg-slate-50 p-4 focus:outline-none dark:bg-slate-50 ${arimo.className} text-black`}
-          placeholder="Escribe aquí tu pregunta..."
+          placeholder={`Escribe aquí tu pregunta...`}
           type="text"
           value={userMessage}
           onChange={handleMessageChange}
