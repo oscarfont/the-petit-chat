@@ -13,9 +13,10 @@ export default function Input() {
   const { addMessage, isLoading, setLoading } = useContext(ChatContext);
 
   const fetchTextCompletion = async (userMessage: string) => {
+    const url = `${process.env.NEXT_PUBLIC_BASE_URL}/api/generate`
     try {
       const response = await fetch(
-          `${process.env.ENDPOINT_HOST}/api/generate`,
+        url,
         {
           method: "POST",
           headers: {
@@ -25,6 +26,7 @@ export default function Input() {
               : "",
           },
           body: JSON.stringify({ message: userMessage }),
+          signal: AbortSignal.timeout(30000)
         }
       );
       const { id, message } = await response.json();
